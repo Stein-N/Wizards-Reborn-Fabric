@@ -1,0 +1,53 @@
+{
+  "type": "minecraft:tree",
+  "config": {
+    "decorators": [],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_placer": {
+      "type": "minecraft:blob_foliage_placer",
+      "height": 0,
+      "offset": {
+        "type": "minecraft:uniform",
+        "value": {
+          "max_inclusive": 0,
+          "min_inclusive": 0
+        }
+      },
+      "radius": {
+        "type": "minecraft:uniform",
+        "value": {
+          "max_inclusive": 0,
+          "min_inclusive": 0
+        }
+      }
+    },
+    "foliage_provider": {
+      "type": "wizards_reborn:an_stateprovider",
+      "key": "arcane_wood_leaves"
+    },
+    "force_dirt": false,
+    "ignore_vines": true,
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 0,
+      "lower_size": 0,
+      "min_clipped_height": 4,
+      "upper_size": 0
+    },
+    "trunk_placer": {
+      "type": "wizards_reborn:arcane_wood_trunk_placer",
+      "base_height": 6,
+      "height_rand_a": 2,
+      "height_rand_b": 1
+    },
+    "trunk_provider": {
+      "type": "wizards_reborn:an_stateprovider",
+      "key": "arcane_wood_log"
+    }
+  }
+}
