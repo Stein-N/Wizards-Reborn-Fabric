@@ -11,6 +11,6 @@ public class WizardsRebornClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
 				BlockRegistry.ARCANE_WOOD_DOOR, BlockRegistry.ARCANE_WOOD_SAPLING, BlockRegistry.POTTED_ARCANE_WOOD_SAPLING,
-				BlockRegistry.ARCANE_LINEN);
+				BlockRegistry.ARCANE_LINEN, BlockRegistry.MOR, BlockRegistry.ELDER_MOR);
 	}
 }

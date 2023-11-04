@@ -18,6 +18,10 @@ import net.xstopho.wizards_reborn.common.world.tree.SupplierBlockStateProvider;
 public class WorldGenRegistry {
     public static RegistryKey<ConfiguredFeature<?, ?>> ARCANE_WOOD_TREE = registerConfiguredFeature("arcane_wood");
     public static RegistryKey<ConfiguredFeature<?, ?>> FANCY_ARCANE_WOOD_TREE = registerConfiguredFeature("fancy_arcane_wood");
+    public static RegistryKey<ConfiguredFeature<?, ?>> TALL_MOR = registerConfiguredFeature("tall_mor");
+    public static RegistryKey<ConfiguredFeature<?, ?>> TALL_ELDER_MOR = registerConfiguredFeature("tall_elder_mor");
+    public static RegistryKey<ConfiguredFeature<?, ?>> HUGE_MOR = registerConfiguredFeature("huge_mor");
+    public static RegistryKey<ConfiguredFeature<?, ?>> HUGE_ELDER_MOR = registerConfiguredFeature("huge_elder_mor");
 
     public static final BlockStateProviderType<SupplierBlockStateProvider> AN_STATEPROVIDER = registerBlockStateProviderType("an_stateprovider", SupplierBlockStateProvider.CODEC);
 

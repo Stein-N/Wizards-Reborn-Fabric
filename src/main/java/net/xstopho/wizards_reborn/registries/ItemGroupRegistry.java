@@ -15,6 +15,7 @@ import net.xstopho.wizards_reborn.WizardsReborn;
 
 public class ItemGroupRegistry {
 
+    //TODO change icon
     public static final ItemGroup WIZARDS_REBORN = Registry.register(Registries.ITEM_GROUP, new Identifier(WizardsReborn.MOD_ID, "item_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemGroup.wizards_reborn_mod_tab")).icon(() -> new ItemStack(Items.STICK)).entries((displayContext, entries) -> {
 

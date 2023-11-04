@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.xstopho.wizards_reborn.WizardsReborn;
 import net.xstopho.wizards_reborn.common.block.ArcaneLinenBlock;
+import net.xstopho.wizards_reborn.common.block.MorBlock;
 import net.xstopho.wizards_reborn.common.world.tree.ArcaneWoodTree;
 
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public class BlockRegistry {
     public static final Block POTTED_ARCANE_WOOD_SAPLING = register("potted_arcane_wood_sapling", new FlowerPotBlock(ARCANE_WOOD_SAPLING, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
     public static final Block ARCANE_LINEN = Registry.register(Registries.BLOCK, new Identifier(WizardsReborn.MOD_ID, "arcane_linen"), new ArcaneLinenBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
+    public static final Block ARCANE_LINES_HAY = register("arcane_linen_hay", new HayBlock(FabricBlockSettings.copyOf(Blocks.HAY_BLOCK)));
+
+    public static final Block MOR = register("mor", new MorBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM)));
+    public static final Block POTTED_MOR = register("potted_mor", new FlowerPotBlock(MOR, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
+    public static final Block MOR_BLOCK = register("mor_block", new MushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM_BLOCK)));
+    public static final Block ELDER_MOR = register("elder_mor", new MorBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM)));
+    public static final Block POTTED_ELDER_MOR = register("potted_elder_mor", new FlowerPotBlock(ELDER_MOR, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
+    public static final Block ELDER_MOR_BLOCK = register("elder_mor_block", new MushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK)));
 
     private static Block register(String id, Block block) {
         BLOCKS.add(block);

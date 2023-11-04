@@ -3,14 +3,14 @@
 	"id": "wizards_reborn",
 	"version": "${version}",
 	"name": "Wizards Reborn",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Adds Magical Stuff",
 	"authors": [
 		"MaxBogomol - Main Developer",
 		"xStopho - Fabric Port"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": ""
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/wizards_reborn/icon.png",

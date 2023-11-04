@@ -11,12 +11,12 @@ public class ArcaneWoodTree extends LargeTreeSaplingGenerator {
     @Nullable
     @Override
     protected RegistryKey<ConfiguredFeature<?, ?>> getLargeTreeFeature(Random random) {
-        return WorldGenRegistry.ARCANE_WOOD_TREE;
+        return WorldGenRegistry.FANCY_ARCANE_WOOD_TREE;
     }
 
     @Nullable
     @Override
     protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-        return WorldGenRegistry.FANCY_ARCANE_WOOD_TREE;
+        return WorldGenRegistry.ARCANE_WOOD_TREE;
     }
 }
