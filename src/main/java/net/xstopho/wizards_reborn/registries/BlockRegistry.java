@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.xstopho.wizards_reborn.WizardsReborn;
 import net.xstopho.wizards_reborn.common.block.ArcaneLinenBlock;
+import net.xstopho.wizards_reborn.common.block.CrystalSeedBlock;
 import net.xstopho.wizards_reborn.common.block.MorBlock;
 import net.xstopho.wizards_reborn.common.world.tree.ArcaneWoodTree;
 
@@ -58,6 +59,12 @@ public class BlockRegistry {
     public static final Block ELDER_MOR = register("elder_mor", new MorBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM)));
     public static final Block POTTED_ELDER_MOR = register("potted_elder_mor", new FlowerPotBlock(ELDER_MOR, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
     public static final Block ELDER_MOR_BLOCK = register("elder_mor_block", new MushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK)));
+
+    public static final Block EARTH_CRYSTAL_SEED_BLOCK = register("earth_crystal_seed", new CrystalSeedBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
+    public static final Block WATER_CRYSTAL_SEED_BLOCK = register("water_crystal_seed", new CrystalSeedBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
+    public static final Block AIR_CRYSTAL_SEED_BLOCK = register("air_crystal_seed", new CrystalSeedBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
+    public static final Block FIRE_CRYSTAL_SEED_BLOCK = register("fire_crystal_seed", new CrystalSeedBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
+    public static final Block VOID_CRYSTAL_SEED_BLOCK = register("void_crystal_seed", new CrystalSeedBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
 
     private static Block register(String id, Block block) {
         BLOCKS.add(block);
