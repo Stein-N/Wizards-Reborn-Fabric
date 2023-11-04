@@ -12,7 +12,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.xstopho.wizards_reborn.WizardsReborn;
-import net.xstopho.wizards_reborn.common.block.CrystalSeedBlock;
 
 public class ItemGroupRegistry {
 

@@ -9,7 +9,6 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.xstopho.wizards_reborn.registries.BlockRegistry;
 import net.xstopho.wizards_reborn.registries.WorldGenRegistry;
@@ -35,7 +34,7 @@ public class MorBlock extends MushroomPlantBlock {
             return false;
         }
         world.removeBlock(pos, false);
-        if (((ConfiguredFeature)((RegistryEntry)optional.get()).value()).generate(world, world.getChunkManager().getChunkGenerator(), random, pos)) {
+        if (((ConfiguredFeature<?, ?>)((RegistryEntry<?>)optional.get()).value()).generate(world, world.getChunkManager().getChunkGenerator(), random, pos)) {
             return true;
         }
         world.setBlockState(pos, state, Block.NOTIFY_ALL);

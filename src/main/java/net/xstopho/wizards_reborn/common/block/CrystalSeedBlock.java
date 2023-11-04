@@ -10,7 +10,9 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.*;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -49,19 +51,19 @@ public class CrystalSeedBlock extends Block implements Waterloggable {
         if (state.get(Properties.WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
-        return getBlockConnected(state).getOpposite() == direction && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return getBlockConnected().getOpposite() == direction && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     public PistonBehavior getPistonBehavior(BlockState state) {
         return PistonBehavior.DESTROY;
     }
 
-    public boolean canSurvive(BlockState state, WorldView worldView, BlockPos pos) {
-        Direction direction = getBlockConnected(state).getOpposite();
+    public boolean canSurvive(WorldView worldView, BlockPos pos) {
+        Direction direction = getBlockConnected().getOpposite();
         return Block.sideCoversSmallSquare(worldView, pos.offset(direction), direction.getOpposite());
     }
 
-    protected static Direction getBlockConnected(BlockState state) {
+    protected static Direction getBlockConnected() {
         return Direction.UP;
     }
 }

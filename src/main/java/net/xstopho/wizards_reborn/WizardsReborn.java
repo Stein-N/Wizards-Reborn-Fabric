@@ -1,8 +1,6 @@
 package net.xstopho.wizards_reborn;
 
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.api.ModInitializer;
-
 import net.xstopho.wizards_reborn.registries.BlockRegistry;
 import net.xstopho.wizards_reborn.registries.ItemGroupRegistry;
 import net.xstopho.wizards_reborn.registries.ItemRegistry;
