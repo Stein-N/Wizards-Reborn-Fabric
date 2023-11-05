@@ -12,6 +12,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.xstopho.wizards_reborn.WizardsReborn;
+import net.xstopho.wizards_reborn.common.block.CrystalGrowthBlock;
+import net.xstopho.wizards_reborn.common.entities.CrystalGrowthBlockEntity;
+import net.xstopho.wizards_reborn.common.item.CrystalItem;
 
 public class ItemGroupRegistry {
 
@@ -20,13 +23,15 @@ public class ItemGroupRegistry {
             FabricItemGroup.builder().displayName(Text.translatable("itemGroup.wizards_reborn_mod_tab")).icon(() -> new ItemStack(Items.STICK)).entries((displayContext, entries) -> {
 
                 for (Block block : BlockRegistry.BLOCKS) {
-                    if (!(block instanceof FlowerPotBlock)) {
-                        entries.add(block);
-                    }
+                    entries.add(block);
                 }
 
                 for (Item item : ItemRegistry.ITEMS) {
-                    entries.add(item);
+                    if (item instanceof CrystalItem) {
+                        entries.add(CrystalItem.creativeTabRandomStats(item));
+                    } else {
+                        entries.add(item);
+                    }
                 }
 
             }).build());

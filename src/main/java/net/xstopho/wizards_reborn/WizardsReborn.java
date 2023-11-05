@@ -1,10 +1,7 @@
 package net.xstopho.wizards_reborn;
 
 import net.fabricmc.api.ModInitializer;
-import net.xstopho.wizards_reborn.registries.BlockRegistry;
-import net.xstopho.wizards_reborn.registries.ItemGroupRegistry;
-import net.xstopho.wizards_reborn.registries.ItemRegistry;
-import net.xstopho.wizards_reborn.registries.WorldGenRegistry;
+import net.xstopho.wizards_reborn.registries.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +12,8 @@ public class WizardsReborn implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		WorldGenRegistry.init();
+		EntityRegistry.init();
+		CrystalRegistry.init();
 
 		BlockRegistry.init();
 		ItemRegistry.init();

@@ -8,6 +8,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.xstopho.wizards_reborn.registries.BlockRegistry;
 import net.xstopho.wizards_reborn.registries.ItemRegistry;
 
 public class ArcaneLinenBlock extends CropBlock {
@@ -27,7 +28,7 @@ public class ArcaneLinenBlock extends CropBlock {
 
     @Override
     protected ItemConvertible getSeedsItem() {
-        return ItemRegistry.ARCANE_LINEN_SEEDS;
+        return BlockRegistry.ARCANE_LINEN.asItem();
     }
 
     @Override
