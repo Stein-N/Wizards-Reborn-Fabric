@@ -47,6 +47,34 @@ public class BlockRegistry {
     public static final Block ARCANE_WOOD_SAPLING = registerWithItem("arcane_wood_sapling", new SaplingBlock(new ArcaneWoodTree(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
     public static final Block POTTED_ARCANE_WOOD_SAPLING = register("potted_arcane_wood_sapling", new FlowerPotBlock(ARCANE_WOOD_SAPLING, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
+    public static final Block WISESTONE = registerWithItem("wisestone", new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE)));
+    public static final Block WISESTONE_STAIRS = registerWithItem("wisestone_stairs", new StairsBlock(WISESTONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE)));
+    public static final Block WISESTONE_SLAB = registerWithItem("wisestone_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE_SLAB)));
+    public static final Block WISESTONE_WALL = registerWithItem("wisestone_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE_WALL)));
+
+    public static final Block POLISHED_WISESTONE = registerWithItem("polished_wisestone", new Block(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE)));
+    public static final Block POLISHED_WISESTONE_STAIRS = registerWithItem("polished_wisestone_stairs", new StairsBlock(POLISHED_WISESTONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE_STAIRS)));
+    public static final Block POLISHED_WISESTONE_SLAB = registerWithItem("polished_wisestone_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE_SLAB)));
+    public static final Block POLISHED_WISESTONE_WALL = registerWithItem("polished_wisestone_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE_WALL)));
+
+    public static final Block WISESTONE_BRICKS = registerWithItem("wisestone_bricks", new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
+    public static final Block WISESTONE_BRICKS_STAIRS = registerWithItem("wisestone_bricks_stairs", new StairsBlock(WISESTONE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICK_STAIRS)));
+    public static final Block WISESTONE_BRICKS_SLAB = registerWithItem("wisestone_bricks_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICK_SLAB)));
+    public static final Block WISESTONE_BICKS_WALL = registerWithItem("wisestone_bricks_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICK_WALL)));
+
+    public static final Block WISESTONE_TILE = registerWithItem("wisestone_tile", new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_TILES)));
+    public static final Block WISESTONE_TILE_STAIRS = registerWithItem("wisestone_tile_stairs", new StairsBlock(WISESTONE_TILE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.DEEPSLATE_TILE_STAIRS)));
+    public static final Block WISESTONE_TILE_SLAB = registerWithItem("wisestone_tile_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_TILE_SLAB)));
+    public static final Block WISESTONE_TILE_WALL = registerWithItem("wisestone_tile_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_TILE_WALL)));
+
+    public static final Block CHISELED_WISESTONE = registerWithItem("chiseled_wisestone", new Block(FabricBlockSettings.copyOf(Blocks.COBBLED_DEEPSLATE)));
+    public static final Block CHISELED_WISESTONE_STAIRS = registerWithItem("chiseled_wisestone_stairs", new StairsBlock(CHISELED_WISESTONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.COBBLED_DEEPSLATE_STAIRS)));
+    public static final Block CHISELED_WISESTONE_SLAB = registerWithItem("chiseled_wisestone_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.COBBLED_DEEPSLATE_SLAB)));
+    public static final Block CHISELED_WISESTONE_WALL = registerWithItem("chiseled_wisestone_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.COBBLED_DEEPSLATE_WALL)));
+
+    public static final Block POLISHED_WISESTONE_PRESSURE_PLATE = registerWithItem("polished_wisestone_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE), BlockSetType.POLISHED_BLACKSTONE));
+    public static final Block POLISHED_WISESTONE_BUTTON = registerWithItem("polished_wisestone_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_BUTTON), BlockSetType.OAK, 20, false));
+
     public static final Block ARCANE_LINEN = register("arcane_linen", new ArcaneLinenBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
     public static final Block ARCANE_LINES_HAY = registerWithItem("arcane_linen_hay", new HayBlock(FabricBlockSettings.copyOf(Blocks.HAY_BLOCK)));
 
