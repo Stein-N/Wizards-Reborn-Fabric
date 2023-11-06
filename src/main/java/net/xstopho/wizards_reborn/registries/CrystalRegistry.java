@@ -3,6 +3,7 @@ package net.xstopho.wizards_reborn.registries;
 import net.xstopho.wizards_reborn.WizardsReborn;
 import net.xstopho.wizards_reborn.api.crystal.CrystalStat;
 import net.xstopho.wizards_reborn.api.crystal.CrystalType;
+import net.xstopho.wizards_reborn.api.crystal.Crystals;
 import net.xstopho.wizards_reborn.api.crystal.PolishingType;
 import net.xstopho.wizards_reborn.common.crystal.*;
 
@@ -26,6 +27,16 @@ public class CrystalRegistry {
     public static final PolishingType PURE_POLISHING_TYPE  = new PurePolishingType(WizardsReborn.MOD_ID + ":pure");
 
     public static void init() {
+        Crystals.registerPolishing(CRYSTAL_POLISHING_TYPE);
+        Crystals.registerPolishing(FACETED_POLISHING_TYPE);
+        Crystals.registerPolishing(ADVANCED_POLISHING_TYPE);
+        Crystals.registerPolishing(MASTERFUL_POLISHING_TYPE);
+        Crystals.registerPolishing(PURE_POLISHING_TYPE);
 
+        Crystals.registerType(EARTH_CRYSTAL_TYPE);
+        Crystals.registerType(WATER_CRYSTAL_TYPE);
+        Crystals.registerType(AIR_CRYSTAL_TYPE);
+        Crystals.registerType(FIRE_CRYSTAL_TYPE);
+        Crystals.registerType(VOID_CRYSTAL_TYPE);
     }
 }

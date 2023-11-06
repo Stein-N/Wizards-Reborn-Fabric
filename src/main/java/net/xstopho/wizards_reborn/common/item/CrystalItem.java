@@ -3,6 +3,7 @@ package net.xstopho.wizards_reborn.common.item;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +12,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.State;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Property;
 import net.minecraft.text.Style;
@@ -36,7 +36,7 @@ import java.util.List;
 
 public class CrystalItem extends BlockItem {
     public CrystalItem(Block block, Settings settings) {
-        super(block, settings);
+        super(block, settings.maxCount(1));
     }
 
     public CrystalType getType() {
@@ -103,54 +103,51 @@ public class CrystalItem extends BlockItem {
     }
 
     //TODO Crystal isn't saved in Crystal Block Inventory, priority to fix
+
     @Override
     public ActionResult place(ItemPlacementContext context) {
         if (!this.getBlock().isEnabled(context.getWorld().getEnabledFeatures())) {
             return ActionResult.FAIL;
-        } else if (!context.canPlace()) {
+        }
+        if (!context.canPlace()) {
             return ActionResult.FAIL;
-        } else {
-            ItemPlacementContext itemPlacementContext = this.getPlacementContext(context);
-            if (itemPlacementContext == null) {
-                return ActionResult.FAIL;
-            } else {
-                BlockState blockstate = this.getPlacementState(itemPlacementContext);
-                if (blockstate == null) {
-                    return ActionResult.FAIL;
-                } else if (!this.place(itemPlacementContext, blockstate)) {
-                    return ActionResult.FAIL;
-                } else {
-                    BlockPos pos = itemPlacementContext.getBlockPos();
-                    World world = itemPlacementContext.getWorld();
-                    PlayerEntity player = itemPlacementContext.getPlayer();
-                    ItemStack itemstack = player.getActiveItem();
-                    BlockState state = world.getBlockState(pos);
-                    if (state.isOf(blockstate.getBlock())) {
-                        state = this.updateBlockStateFromTag(pos, world, itemstack, state);
-                        this.postPlacement(pos, world, player, itemstack, state);
-                        world.setBlockState(pos, state);
-                        if (player instanceof ServerPlayerEntity) {
-                            Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemstack);
-                        }
-                    }
-
-                    CrystalBlockEntity tile = (CrystalBlockEntity) world.getBlockEntity(pos);
-                    tile.getInventory().setStack(0, itemstack.copy());
-
-
-                    PacketUtils.SUpdateTileEntityPacket(tile);
-
-                    BlockSoundGroup soundtype = state.getSoundGroup();
-                    world.playSound(player, pos, this.getPlaceSound(state), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                    world.emitGameEvent(GameEvent.BLOCK_PLACE, pos, GameEvent.Emitter.of(player, state));
-                    if (player == null || !player.getAbilities().creativeMode) {
-                        itemstack.decrement(1);
-                    }
-
-                    return ActionResult.success(world.isClient);
-                }
+        }
+        ItemPlacementContext itemPlacementContext = this.getPlacementContext(context);
+        if (itemPlacementContext == null) {
+            return ActionResult.FAIL;
+        }
+        BlockState blockState = this.getPlacementState(itemPlacementContext);
+        if (blockState == null) {
+            return ActionResult.FAIL;
+        }
+        if (!this.place(itemPlacementContext, blockState)) {
+            return ActionResult.FAIL;
+        }
+        BlockPos blockPos = itemPlacementContext.getBlockPos();
+        World world = itemPlacementContext.getWorld();
+        PlayerEntity playerEntity = itemPlacementContext.getPlayer();
+        ItemStack itemStack = itemPlacementContext.getStack();
+        BlockState blockState2 = world.getBlockState(blockPos);
+        if (blockState2.isOf(blockState.getBlock())) {
+            blockState2 = this.updateBlockStateFromTag(blockPos, world, itemStack, blockState2);
+            this.postPlacement(blockPos, world, playerEntity, itemStack, blockState2);
+            blockState2.getBlock().onPlaced(world, blockPos, blockState2, playerEntity, itemStack);
+            if (playerEntity instanceof ServerPlayerEntity) {
+                Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
             }
         }
+
+        CrystalBlockEntity entity = (CrystalBlockEntity) world.getBlockEntity(blockPos);
+        entity.getInventory().setStack(0, itemStack.copy());
+        world.updateListeners(blockPos, blockState, blockState2, Block.NOTIFY_LISTENERS);
+
+        BlockSoundGroup blockSoundGroup = blockState2.getSoundGroup();
+        world.playSound(playerEntity, blockPos, this.getPlaceSound(blockState2), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0f) / 2.0f, blockSoundGroup.getPitch() * 0.8f);
+        world.emitGameEvent(GameEvent.BLOCK_PLACE, blockPos, GameEvent.Emitter.of(playerEntity, blockState2));
+        if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
+            itemStack.decrement(1);
+        }
+        return ActionResult.success(world.isClient);
     }
 
     private BlockState updateBlockStateFromTag(BlockPos pos, World world, ItemStack stack, BlockState state) {
@@ -170,7 +167,7 @@ public class CrystalItem extends BlockItem {
         }
 
         if (blockstate != state) {
-            world.setBlockState(pos, blockstate, 2);
+            world.setBlockState(pos, blockstate, Block.NOTIFY_LISTENERS);
         }
 
         return blockstate;

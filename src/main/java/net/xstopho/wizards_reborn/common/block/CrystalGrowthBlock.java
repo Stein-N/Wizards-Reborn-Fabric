@@ -7,10 +7,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -21,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.xstopho.wizards_reborn.api.crystal.CrystalType;
+import net.xstopho.wizards_reborn.api.crystal.CrystalUtils;
 import net.xstopho.wizards_reborn.common.entities.CrystalGrowthBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -183,7 +186,22 @@ public class CrystalGrowthBlock extends BlockWithEntity implements BlockEntityPr
         super.onBreak(world, pos, state, player);
     }
 
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            if (random.nextFloat() < getAge(state) * 0.05) {
+                ItemStack crystal = type.getFracturedCrystal();
+                CrystalUtils.createCrystalItemStats(crystal, type, world, 4);
+                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), crystal);
+            }
 
+            if (getAge(state) == getMaxAge()) {
+                ItemStack crystal = type.getCrystal();
+                CrystalUtils.createCrystalItemStats(crystal, type, world, 6);
+                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), crystal);
+            }
+        }
+    }
 
     @Nullable
     @Override
