@@ -19,6 +19,8 @@ public class WizardsReborn implements ModInitializer {
 		ItemRegistry.init();
 		ItemGroupRegistry.init();
 
+		ParticleRegistry.init();
+
 		LOGGER.info("Hello Fabric world!");
 	}
 }

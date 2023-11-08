@@ -1,5 +1,7 @@
 package net.xstopho.wizards_reborn.common.block;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
@@ -7,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ItemScatterer;
@@ -18,11 +21,15 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.xstopho.wizards_reborn.WizardsReborn;
 import net.xstopho.wizards_reborn.api.crystal.CrystalType;
 import net.xstopho.wizards_reborn.api.crystal.PolishingType;
+import net.xstopho.wizards_reborn.client.particle.Particles;
+import net.xstopho.wizards_reborn.client.particle.SparkleParticle;
 import net.xstopho.wizards_reborn.common.entities.BlockSimpleInventory;
 import net.xstopho.wizards_reborn.common.entities.CrystalBlockEntity;
 import net.xstopho.wizards_reborn.registries.CrystalRegistry;
+import net.xstopho.wizards_reborn.registries.ParticleRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
@@ -32,7 +39,7 @@ import java.util.stream.Stream;
 public class CrystalBlock extends Block implements BlockEntityProvider, Waterloggable {
     public PolishingType polishing;
     public CrystalType type;
-    private static Random random = new Random();
+    private static final Random rnd = new Random();
 
     private static final VoxelShape FACETED_SHAPE = Block.createCuboidShape(5, 0, 5, 11, 9, 11);
     private static final VoxelShape SHAPE = Stream.of(
@@ -102,33 +109,31 @@ public class CrystalBlock extends Block implements BlockEntityProvider, Waterlog
         return Direction.UP;
     }
 
+
     @Override
+    @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         if (polishing.hasParticle()) {
             Color color = polishing.getColor();
             float r = color.getRed() / 255f;
             float g = color.getGreen() / 255f;
             float b = color.getBlue() / 255f;
+
+            Particles.create(ParticleRegistry.SPARKLE_PARTICLE)
+                    .addVelocity(((random.nextDouble() - 0.5D) / 30), ((random.nextDouble() - 0.5D) / 30), ((random.nextDouble() - 0.5D) / 30))
+                    .setAlpha(0.5f, 0).setScale(0.1f, 0)
+                    .setColor(r, g, b)
+                    .setLifetime(30)
+                    .setSpin((0.5f * (float) ((random.nextDouble() - 0.5D) * 2)))
+                    .spawn(world, pos.getX() + 0.5F + ((random.nextDouble() - 0.5D) * 0.5), pos.getY() + 0.5F + ((random.nextDouble() - 0.5D) * 0.5), pos.getZ() + 0.5F + ((random.nextDouble() - 0.5D) * 0.5));
         }
-
-        //TODO finish when PArticle System is implemented
-
         super.randomDisplayTick(state, world, pos, random);
     }
 
+
+
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (world.isClient()) {
-            if (!player.isCreative()) {
-                Color color = type.getColor();
-                float r = color.getRed() / 255f;
-                float g = color.getGreen() / 255f;
-                float b = color.getBlue() / 255f;
-
-            }
-        }
-
-        //TODO finish when Particle System is implemented
 
         super.onBreak(world, pos, state, player);
     }

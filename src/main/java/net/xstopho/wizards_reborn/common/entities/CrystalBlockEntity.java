@@ -10,6 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.xstopho.wizards_reborn.registries.EntityRegistry;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Random;
+
 public class CrystalBlockEntity extends BlockSimpleInventory {
 
     public CrystalBlockEntity(BlockPos pos, BlockState state) {

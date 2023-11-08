@@ -43,7 +43,7 @@ public class BlockRegistry {
     public static final Block ARCANE_WOOD_PRESSURE_PLATE = registerWithItem("arcane_wood_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), BlockSetType.OAK));
     public static final Block ARCANE_WOOD_BUTTON = registerWithItem("arcane_wood_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), BlockSetType.OAK, 10, true));
     //TODO Add all Sign types
-    public static final Block ARCANE_WOOD_LEAVES = registerWithItem("arcane_wood_leaves", new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
+    public static final Block ARCANE_WOOD_LEAVES = registerWithItem("arcane_wood_leaves", new ArcaneWoodLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
     public static final Block ARCANE_WOOD_SAPLING = registerWithItem("arcane_wood_sapling", new SaplingBlock(new ArcaneWoodTree(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
     public static final Block POTTED_ARCANE_WOOD_SAPLING = register("potted_arcane_wood_sapling", new FlowerPotBlock(ARCANE_WOOD_SAPLING, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 

@@ -3,6 +3,7 @@ package net.xstopho.wizards_reborn.common.item;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -27,6 +29,7 @@ import net.xstopho.wizards_reborn.api.crystal.CrystalUtils;
 import net.xstopho.wizards_reborn.api.crystal.PolishingType;
 import net.xstopho.wizards_reborn.common.block.CrystalBlock;
 import net.xstopho.wizards_reborn.common.entities.CrystalBlockEntity;
+import net.xstopho.wizards_reborn.registries.ParticleRegistry;
 import net.xstopho.wizards_reborn.utils.ColorUtils;
 import net.xstopho.wizards_reborn.utils.PacketUtils;
 import org.jetbrains.annotations.Nullable;
@@ -101,8 +104,6 @@ public class CrystalItem extends BlockItem {
 
         super.appendTooltip(stack, world, tooltip, context);
     }
-
-    //TODO Crystal isn't saved in Crystal Block Inventory, priority to fix
 
     @Override
     public ActionResult place(ItemPlacementContext context) {
