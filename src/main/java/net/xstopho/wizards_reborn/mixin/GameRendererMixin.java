@@ -8,6 +8,7 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.xstopho.wizards_reborn.common.item.equipment.ScytheItem;
 import net.xstopho.wizards_reborn.registries.AttributeRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -19,7 +20,7 @@ public class GameRendererMixin {
     @ModifyConstant(method = "updateTargetedEntity", constant = @Constant(doubleValue = 3.0))
     public double injected(double constant) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if (player != null) {
+        if (player != null && player.getMainHandStack().getItem() instanceof ScytheItem) {
             ItemStack handStack = player.getMainHandStack();
             Multimap<EntityAttribute, EntityAttributeModifier> map = handStack.getAttributeModifiers(EquipmentSlot.MAINHAND);
 

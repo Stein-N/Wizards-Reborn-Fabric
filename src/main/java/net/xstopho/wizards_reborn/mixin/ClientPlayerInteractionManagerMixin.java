@@ -23,17 +23,15 @@ public class ClientPlayerInteractionManagerMixin {
     public void getReachDistance(CallbackInfoReturnable<Float> cir) {
         PlayerEntity player = MinecraftClient.getInstance().player;
 
-        if (player != null) {
+        if (player != null && player.getMainHandStack().getItem() instanceof ScytheItem) {
             ItemStack handStack = player.getMainHandStack();
             Multimap<EntityAttribute, EntityAttributeModifier> map = handStack.getAttributeModifiers(EquipmentSlot.MAINHAND);
 
-            if (handStack.getItem() instanceof ScytheItem) {
-                if (map.containsKey(AttributeRegistry.ENTITY_REACH)) {
-                    float range = (float) map.get(AttributeRegistry.ENTITY_REACH).stream().mapToDouble(EntityAttributeModifier::getValue).sum() + 4;
-                    cir.setReturnValue(range);
-                } else {
-                    WizardsReborn.LOGGER.info("Nothing");
-                }
+            if (map.containsKey(AttributeRegistry.ENTITY_REACH)) {
+                float range = (float) map.get(AttributeRegistry.ENTITY_REACH).stream().mapToDouble(EntityAttributeModifier::getValue).sum() + 4;
+                cir.setReturnValue(range);
+            } else {
+                WizardsReborn.LOGGER.info("Nothing");
             }
         }
     }
