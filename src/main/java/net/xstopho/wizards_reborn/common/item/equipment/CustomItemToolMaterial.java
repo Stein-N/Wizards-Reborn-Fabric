@@ -9,7 +9,7 @@ import net.xstopho.wizards_reborn.registries.ItemRegistry;
 import java.util.function.Supplier;
 
 public enum CustomItemToolMaterial implements ToolMaterial {
-    ARCANE_GOLD(MiningLevels.DIAMOND, 450, 8f, 2f, 25, () -> Ingredient.ofItems(ItemRegistry.ARCAEN_GOLD_INGOT));
+    ARCANE_GOLD(MiningLevels.DIAMOND, 450, 8f, 2f, 25, () -> Ingredient.ofItems(ItemRegistry.ARCANE_GOLD_INGOT));
 
     private final int miningLevel;
     private final int itemDurability;

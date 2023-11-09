@@ -10,6 +10,8 @@ public class WizardsReborn implements ModInitializer {
 	public static final String MOD_ID = "wizards_reborn";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+	//TODO Port RenderUtils and WorldRenderHandler
+
 	@Override
 	public void onInitialize() {
 		initUtil.priorityInit();

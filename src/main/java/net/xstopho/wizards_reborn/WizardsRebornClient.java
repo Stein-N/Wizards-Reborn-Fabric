@@ -29,6 +29,7 @@ public class WizardsRebornClient implements ClientModInitializer {
 
 		ParticleFactoryRegistry.getInstance().register(ParticleRegistry.ARCANE_WOOD_LEAF_PARTICLE, ArcaneWoodLeafParticleType.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(ParticleRegistry.SPARKLE_PARTICLE, SparkleParticleType.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(ParticleRegistry.WISP_PARTICLE, SparkleParticleType.Factory::new);
 
 	}
 

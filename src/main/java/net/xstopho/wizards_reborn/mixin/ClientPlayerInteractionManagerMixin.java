@@ -28,7 +28,7 @@ public class ClientPlayerInteractionManagerMixin {
             Multimap<EntityAttribute, EntityAttributeModifier> map = handStack.getAttributeModifiers(EquipmentSlot.MAINHAND);
 
             if (map.containsKey(AttributeRegistry.ENTITY_REACH)) {
-                float range = (float) map.get(AttributeRegistry.ENTITY_REACH).stream().mapToDouble(EntityAttributeModifier::getValue).sum() + 4;
+                float range = (float) map.get(AttributeRegistry.ENTITY_REACH).stream().mapToDouble(EntityAttributeModifier::getValue).sum() + 3;
                 cir.setReturnValue(range);
             } else {
                 WizardsReborn.LOGGER.info("Nothing");

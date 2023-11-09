@@ -5,10 +5,10 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.chunk.placement.StructurePlacement;
 import net.xstopho.wizards_reborn.WizardsReborn;
 import net.xstopho.wizards_reborn.common.item.CrystalItem;
 import net.xstopho.wizards_reborn.common.item.FracturedCrystalItem;
+import net.xstopho.wizards_reborn.common.item.equipment.CustomArmorMaterial;
 import net.xstopho.wizards_reborn.common.item.equipment.CustomItemToolMaterial;
 import net.xstopho.wizards_reborn.common.item.equipment.ScytheItem;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public class ItemRegistry {
     public static final List<Item> ITEMS = new ArrayList<>();
 
-    public static final Item ARCAEN_GOLD_INGOT = register("arcane_gold_ingot", new Item(new FabricItemSettings()));
+    public static final Item ARCANE_GOLD_INGOT = register("arcane_gold_ingot", new Item(new FabricItemSettings()));
     public static final Item ARCANE_GOLD_NUGGET = register("arcane_gold_nugget", new Item(new FabricItemSettings()));
     public static final Item RAW_ARCANE_GOLD = register("raw_arcane_gold", new Item(new FabricItemSettings()));
 
@@ -28,6 +28,16 @@ public class ItemRegistry {
     public static final Item ARCANE_GOLD_SHOVEL = register("arcane_gold_shovel", new ShovelItem(CustomItemToolMaterial.ARCANE_GOLD, 1.5f, -3f, new FabricItemSettings()));
     public static final Item ARCANE_GOLD_HOE = register("arcane_gold_hoe", new HoeItem(CustomItemToolMaterial.ARCANE_GOLD, -2, -2.8f, new FabricItemSettings()));
     public static final Item ARCANE_GOLD_SCYTHE = register("arcane_gold_scythe", new ScytheItem(CustomItemToolMaterial.ARCANE_GOLD, 4, -2.8f, new FabricItemSettings(), 1));
+
+    public static final Item ARCANE_GOLD_HELMET = register("arcane_gold_helmet", new ArmorItem(CustomArmorMaterial.ARCANE_GOLD, ArmorItem.Type.HELMET, new FabricItemSettings()));
+    public static final Item ARCANE_GOLD_CHESTPLATE = register("arcane_gold_chestplate", new ArmorItem(CustomArmorMaterial.ARCANE_GOLD, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
+    public static final Item ARCANE_GOLD_LEGGINGS = register("arcane_gold_leggings", new ArmorItem(CustomArmorMaterial.ARCANE_GOLD, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
+    public static final Item ARCANE_GOLD_BOOTS = register("arcane_gold_boots", new ArmorItem(CustomArmorMaterial.ARCANE_GOLD, ArmorItem.Type.BOOTS, new FabricItemSettings()));
+
+    public static final Item ARCANUM = register("arcanum", new Item(new FabricItemSettings()));
+    public static final Item ARCANUM_DUST = register("arcanum_dust", new Item(new FabricItemSettings()));
+
+    public static final Item ARCACITE = register("arcacite", new Item(new FabricItemSettings()));
 
     public static final Item ARCANE_LINEN = register("arcane_linen", new Item(new FabricItemSettings()));
     public static final Item ARCANE_LINEN_SEEDS = register("arcane_linen_seeds", new BlockItem(BlockRegistry.ARCANE_LINEN, new FabricItemSettings()));

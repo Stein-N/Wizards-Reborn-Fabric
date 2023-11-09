@@ -28,6 +28,8 @@ public class BlockRegistry {
     public static final Block ARCANUM_ORE = registerWithItem("arcanum_ore", new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), UniformIntProvider.create(1, 3)));
     public static final Block DEEPSLATE_ARACNUM_ORE = registerWithItem("deepslate_arcanum_ore", new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE), UniformIntProvider.create(1, 3)));
 
+    public static final Block ARCACITE_BLOCK = registerWithItem("arcacite_block", new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)));
+
     public static final Block ARCANE_WOOD_LOG = registerWithItem("arcane_wood_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)));
     public static final Block ARCANE_WOOD = registerWithItem("arcane_wood", new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD)));
     public static final Block STRIPPED_ARCANE_WOOD_LOG = registerWithItem("stripped_arcane_wood_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG)));
@@ -126,6 +128,8 @@ public class BlockRegistry {
     public static final Block PURE_AIR_CRYSTAL_BLOCK = register("pure_air_crystal", new CrystalBlock(CrystalRegistry.AIR_CRYSTAL_TYPE, CrystalRegistry.PURE_POLISHING_TYPE, FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
     public static final Block PURE_FIRE_CRYSTAL_BLOCK = register("pure_fire_crystal", new CrystalBlock(CrystalRegistry.FIRE_CRYSTAL_TYPE, CrystalRegistry.PURE_POLISHING_TYPE, FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
     public static final Block PURE_VOID_CRYSTAL_BLOCK = register("pure_void_crystal", new CrystalBlock(CrystalRegistry.VOID_CRYSTAL_TYPE, CrystalRegistry.PURE_POLISHING_TYPE, FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
+
+    public static final Block WHITE_ARCANE_LUMOS = registerWithItem("white_arcane_lumos", new ArcaneLumosBlock(ArcaneLumosBlock.Colors.WHITE, FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
 
     private static Block register(String id, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(WizardsReborn.MOD_ID, id), block);
