@@ -28,6 +28,8 @@ public class WorldGenRegistry {
     public static RegistryKey<ConfiguredFeature<?, ?>> HUGE_ELDER_MOR = registerConfiguredFeature("huge_elder_mor");
 
     public static RegistryKey<PlacedFeature> ARCANUM_ORE = registerPlacedFeature("arcanum_ore");
+    public static RegistryKey<PlacedFeature> ELDER_MOR_SWAMP = registerPlacedFeature("elder_mor_swamp");
+    public static RegistryKey<PlacedFeature> MOR_SWAMP = registerPlacedFeature("mor_swamp");
 
     public static final BlockStateProviderType<SupplierBlockStateProvider> AN_STATEPROVIDER = registerBlockStateProviderType("an_stateprovider", SupplierBlockStateProvider.CODEC);
 
@@ -51,5 +53,7 @@ public class WorldGenRegistry {
 
     public static void init() {
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, ARCANUM_ORE);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, ELDER_MOR_SWAMP);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, MOR_SWAMP);
     }
 }
