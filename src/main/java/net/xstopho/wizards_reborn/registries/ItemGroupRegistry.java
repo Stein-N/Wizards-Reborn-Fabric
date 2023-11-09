@@ -15,6 +15,7 @@ import net.xstopho.wizards_reborn.WizardsReborn;
 import net.xstopho.wizards_reborn.common.block.CrystalGrowthBlock;
 import net.xstopho.wizards_reborn.common.entities.CrystalGrowthBlockEntity;
 import net.xstopho.wizards_reborn.common.item.CrystalItem;
+import net.xstopho.wizards_reborn.common.item.FracturedCrystalItem;
 
 public class ItemGroupRegistry {
 
@@ -27,9 +28,9 @@ public class ItemGroupRegistry {
                 }
 
                 for (Item item : ItemRegistry.ITEMS) {
-                    if (item instanceof CrystalItem) {
-                        entries.add(CrystalItem.creativeTabRandomStats(item));
-                    } else {
+                    if (item instanceof FracturedCrystalItem || item instanceof CrystalItem) {
+                        entries.add(item instanceof FracturedCrystalItem ? FracturedCrystalItem.creativeTabRandomStats(item) : CrystalItem.creativeTabRandomStats(item));
+                    }else {
                         entries.add(item);
                     }
                 }

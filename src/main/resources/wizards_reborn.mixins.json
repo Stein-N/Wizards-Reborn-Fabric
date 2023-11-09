@@ -3,7 +3,9 @@
 	"package": "net.xstopho.wizards_reborn.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-
+		"PlayerEntityMixin",
+		"ClientPlayerInteractionManagerMixin",
+		"GameRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

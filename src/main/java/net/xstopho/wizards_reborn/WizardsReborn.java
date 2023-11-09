@@ -2,6 +2,7 @@ package net.xstopho.wizards_reborn;
 
 import net.fabricmc.api.ModInitializer;
 import net.xstopho.wizards_reborn.registries.*;
+import net.xstopho.wizards_reborn.utils.initUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,16 +12,13 @@ public class WizardsReborn implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		WorldGenRegistry.init();
-		EntityRegistry.init();
-		CrystalRegistry.init();
+		initUtil.priorityInit();
+		initUtil.normalInit();
 
-		BlockRegistry.init();
-		ItemRegistry.init();
-		ItemGroupRegistry.init();
+		int e = 3;
+		LOGGER.info("e= " + e);
+		LOGGER.info("e *= e =  " + String.valueOf(e *= e));
 
-		ParticleRegistry.init();
-
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Initialisation Finished!");
 	}
 }
