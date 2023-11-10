@@ -10,6 +10,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.texture.TextureManager;
 import net.xstopho.wizards_reborn.WizardsRebornClient;
+import net.xstopho.wizards_reborn.client.render.WorldRenderHandler;
 import org.lwjgl.opengl.GL11;
 
 public class SpriteParticleRenderType implements ParticleTextureSheet {
@@ -21,7 +22,7 @@ public class SpriteParticleRenderType implements ParticleTextureSheet {
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         RenderSystem.setShader(WizardsRebornClient::getSpriteParticleShader);
         RenderSystem.setShaderTexture(0, SpriteAtlasTexture.PARTICLE_ATLAS_TEXTURE);
-        //TODO WorldRenderHandler.particleMVMatrix = RenderSystem.getModelViewMatrix();
+        //WorldRenderHandler.particleMVMatrix = RenderSystem.getModelViewMatrix();
         bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR_LIGHT);
     }
 

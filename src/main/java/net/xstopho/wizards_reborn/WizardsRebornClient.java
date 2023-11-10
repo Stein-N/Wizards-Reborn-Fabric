@@ -7,13 +7,14 @@ import net.fabricmc.fabric.api.client.rendering.v1.CoreShaderRegistrationCallbac
 import net.minecraft.client.gl.ShaderProgram;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexFormats;
+import net.minecraft.resource.Resource;
 import net.minecraft.util.Identifier;
-import net.xstopho.wizards_reborn.client.particle.ArcaneWoodLeafParticle;
-import net.xstopho.wizards_reborn.client.particle.ArcaneWoodLeafParticleType;
-import net.xstopho.wizards_reborn.client.particle.SparkleParticle;
-import net.xstopho.wizards_reborn.client.particle.SparkleParticleType;
+import net.xstopho.wizards_reborn.client.particle.*;
 import net.xstopho.wizards_reborn.registries.BlockRegistry;
 import net.xstopho.wizards_reborn.registries.ParticleRegistry;
+import net.xstopho.wizards_reborn.utils.RenderUtils;
+
+import java.util.Optional;
 
 public class WizardsRebornClient implements ClientModInitializer {
 
@@ -29,7 +30,7 @@ public class WizardsRebornClient implements ClientModInitializer {
 
 		ParticleFactoryRegistry.getInstance().register(ParticleRegistry.ARCANE_WOOD_LEAF_PARTICLE, ArcaneWoodLeafParticleType.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(ParticleRegistry.SPARKLE_PARTICLE, SparkleParticleType.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(ParticleRegistry.WISP_PARTICLE, SparkleParticleType.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(ParticleRegistry.WISP_PARTICLE, WispParticleType.Factory::new);
 
 	}
 
@@ -70,4 +71,5 @@ public class WizardsRebornClient implements ClientModInitializer {
 	public static ShaderProgram getSpriteParticleShader() {
 		return SPRITE_PARTICLE_SHADER;
 	}
+
 }

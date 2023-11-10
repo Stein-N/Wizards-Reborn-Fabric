@@ -1,6 +1,9 @@
 package net.xstopho.wizards_reborn.mixin;
 
 import com.google.common.collect.Multimap;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.entity.EquipmentSlot;
@@ -19,20 +22,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ClientPlayerInteractionManager.class)
 public class ClientPlayerInteractionManagerMixin {
 
+    @Environment(EnvType.CLIENT)
     @Inject(method = "getReachDistance", at = @At("HEAD"), cancellable = true)
     public void getReachDistance(CallbackInfoReturnable<Float> cir) {
         PlayerEntity player = MinecraftClient.getInstance().player;
+        ItemStack handStack = player.getMainHandStack();
+        Multimap<EntityAttribute, EntityAttributeModifier> attributes = handStack.getAttributeModifiers(EquipmentSlot.MAINHAND);
 
-        if (player != null && player.getMainHandStack().getItem() instanceof ScytheItem) {
-            ItemStack handStack = player.getMainHandStack();
-            Multimap<EntityAttribute, EntityAttributeModifier> map = handStack.getAttributeModifiers(EquipmentSlot.MAINHAND);
-
-            if (map.containsKey(AttributeRegistry.ENTITY_REACH)) {
-                float range = (float) map.get(AttributeRegistry.ENTITY_REACH).stream().mapToDouble(EntityAttributeModifier::getValue).sum() + 3;
-                cir.setReturnValue(range);
-            } else {
-                WizardsReborn.LOGGER.info("Nothing");
-            }
+        if (attributes.containsKey(AttributeRegistry.ENTITY_REACH)) {
+            float range = (float) (attributes.get(AttributeRegistry.ENTITY_REACH).stream().mapToDouble(EntityAttributeModifier::getValue).sum() + 3.0f);
+            cir.setReturnValue(range);
         }
     }
 }

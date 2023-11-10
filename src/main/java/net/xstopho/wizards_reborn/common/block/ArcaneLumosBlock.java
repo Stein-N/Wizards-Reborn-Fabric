@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -44,13 +45,18 @@ public class ArcaneLumosBlock extends Block {
     public Colors color;
 
     public ArcaneLumosBlock(Colors color, Settings settings) {
-        super(settings);
+        super(settings.breakInstantly().noCollision().nonOpaque().luminance(state -> 15));
         this.color = color;
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
+    }
+
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        //prevents block breaking particles
     }
 
     @Override
@@ -67,6 +73,7 @@ public class ArcaneLumosBlock extends Block {
                 .setColor(r, g, b)
                 .setLifetime(20)
                 .spawn(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F);
+
         if (random.nextFloat() < 0.5) {
             Particles.create(ParticleRegistry.SPARKLE_PARTICLE)
                     .addVelocity(((random.nextDouble() - 0.5D) / 30), ((random.nextDouble() - 0.5D) / 30), ((random.nextDouble() - 0.5D) / 30))

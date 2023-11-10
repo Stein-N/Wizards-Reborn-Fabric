@@ -2,7 +2,7 @@ package net.xstopho.wizards_reborn.utils;
 
 import net.xstopho.wizards_reborn.registries.*;
 
-public class initUtil {
+public class InitUtils {
 
     public static void priorityInit() {
         WorldGenRegistry.init();
